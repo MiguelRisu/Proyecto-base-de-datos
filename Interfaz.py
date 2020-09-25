@@ -21,7 +21,7 @@ def crear_ventana(ventana):
 
 		ventana_productos = Toplevel()
 		ventana_productos.title("Productos")
-		ventana_productos.geometry("680x325")
+		ventana_productos.geometry("680x324")
 		ventana_productos.iconbitmap(r"C:/Users/Programas Miguel/Desktop/Programas/Curso Python/Proyecto base de datos/icono.ico")
 
 		Label_ID=Label(ventana_productos, text="ID").grid(row=0, column=0, sticky=W)
