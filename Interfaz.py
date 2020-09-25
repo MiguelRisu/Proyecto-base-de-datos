@@ -3,6 +3,8 @@ from tkinter import messagebox
 import os 
 import quest
 
+resultado2 = False
+
 
 
 
@@ -31,70 +33,56 @@ def crear_ventana(ventana):
 
 		
 
-		def  funcion_ventana_productos(event):
-			global ID
-			global Nombre
-			global Precio
-			global Seccion
-			global Lugar
+		
 
-			resultado2=False
-
-
+		height = quest.contador_productos
+		width = 5
+		print(height)
+		
+		texto = StringVar()
+		
+		if height==0:
+			entry = Entry(ventana_productos).grid(row=1, column=0)
+			entry = Entry(ventana_productos).grid(row=1, column=1)
+			entry = Entry(ventana_productos).grid(row=1, column=2)
+			entry = Entry(ventana_productos).grid(row=1, column=3)
+			entry = Entry(ventana_productos).grid(row=1, column=4)
 			
+		boton_borrar=Button(ventana_productos, text="Borrar").grid(row=1,column=5)
+		for i in range(height): #Rows
 
-			height = quest.contador_productos
-			width = 5
-			
-			texto = StringVar()
-			
-			if height==0:
-				entry = Entry(ventana_productos).grid(row=1, column=0)
-				entry = Entry(ventana_productos).grid(row=1, column=1)
-				entry = Entry(ventana_productos).grid(row=1, column=2)
-				entry = Entry(ventana_productos).grid(row=1, column=3)
-				entry = Entry(ventana_productos).grid(row=1, column=4)
+			ID=None
+			Nombre=None
+			Precio=None
+			Seccion=None
+			Lugar=None
+			ID, Nombre, Precio, Seccion, Lugar = quest.info_productos[i]
+
+			print(ID,Nombre,Precio,Seccion,Lugar)
+
+			for j in range(width): #Columns
+
+				if j==0:
+					texto=ID
+
+				if j==1:
+					texto=Nombre
+
+				if j==2:
+					texto=Precio
+
+				if j==3:
+					texto=Seccion
+
+				if j==4:
+					texto=Lugar
+
+				entry = Entry(ventana_productos, textvariable=texto)
+				entry.delete(0, END)
+				entry.grid(row=i+1, column=j)
+				entry.insert(0, texto)
 				
-				boton_borrar=Button(ventana_productos, text="Borrar").grid(row=1,column=5)
-			for i in range(height): #Rows
-
-				ID=None
-				Nombre=None
-				Precio=None
-				Seccion=None
-				Lugar=None
-				ID, Nombre, Precio, Seccion, Lugar= quest.info_productos[i]
-
-				print(ID,Nombre,Precio,Seccion,Lugar)
-				for j in range(width): #Columns
-
-					if j==0:
-						texto=ID
-
-					if j==1:
-						texto=Nombre
-
-					if j==2:
-						texto=Precio
-
-					if j==3:
-						texto=Seccion
-
-					if j==4:
-						texto=Lugar
-						for z in range(width):
-							entry = Entry(ventana_productos)
-							entry.grid(row=i+2, column=z)
-							boton_borrar=Button(ventana_productos, text="Borrar").grid(row=i+2,column=6)
-
-
-					
-					entry = Entry(ventana_productos, textvariable=texto)
-					entry.delete(0, END)
-					entry.grid(row=i+1, column=j)
-					entry.insert(0, texto)
-					
-				boton_borrar=Button(ventana_productos, text="Borrar").grid(row=i+1,column=6)
+			boton_borrar=Button(ventana_productos, text="Borrar").grid(row=i+1,column=6)
 
 			
 	
